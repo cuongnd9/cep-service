@@ -9,7 +9,7 @@
     "arrow-parens": "warn",
     "no-undef": "off",
     "global-require": "warn",
-    "max-classes-per-file": "warn",
+    "max-classes-per-file": "off",
     "import/extensions": "off",
     "import/no-self-import": "error",
     "import/no-cycle": "error",
@@ -40,9 +40,9 @@
     "promise/no-new-statics": "error",
     "promise/no-return-in-finally": "warn",
     "promise/valid-params": "warn",
-    "fp/no-class": "warn",
-    "fp/no-get-set": "warn",
+    "fp/no-class": "off",
+    "fp/no-get-set": "off",
     "fp/no-loops": "warn",
-    "fp/no-this": "warn"
+    "fp/no-this": "off"
   }
 }

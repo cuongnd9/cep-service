@@ -24,7 +24,6 @@ const migration = {
       allowNull: false,
     },
   }),
-  down: (queryInterface) => queryInterface.dropTable('cats'),
 };
 
 export default migration;

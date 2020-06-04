@@ -1,4 +1,4 @@
-import Cat from '../models/cat.model';
+import Cat from '../models/user.model';
 
 class CatService {
   static getCats() {
