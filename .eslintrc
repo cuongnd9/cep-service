@@ -6,6 +6,7 @@
   ],
   "plugins": ["promise", "fp", "import"],
   "rules": {
+    "no-unused-vars": "warn",
     "arrow-parens": "warn",
     "no-undef": "off",
     "global-require": "warn",

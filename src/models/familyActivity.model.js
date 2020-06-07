@@ -1,5 +1,8 @@
-import { Model, DataTypes } from 'sequelize'
-import sequelize from '.'
+import { Model, DataTypes } from 'sequelize';
+
+import sequelize from '.';
+import Family from './family.model';
+import Activity from './activity.model';
 
 class FamilyActivity extends Model {}
 
@@ -11,15 +14,28 @@ FamilyActivity.init({
   },
   familyId: {
     type: DataTypes.UUID,
-    allowNull: false,
+    references: {
+      model: 'Family',
+      key: 'id'
+    }
   },
   activityId: {
     type: DataTypes.UUID,
-    allowNull: false,
+    references: {
+      model: 'Activity',
+      key: 'id'
+    }
   },
 }, {
   sequelize,
   modelName: 'FamilyActivity'
-})
+});
 
-export default FamilyActivity
+FamilyActivity.belongsTo(Family, {
+  foreignKey: 'familyId'
+});
+FamilyActivity.belongsTo(Activity, {
+  foreignKey: 'activityId'
+});
+
+export default FamilyActivity;

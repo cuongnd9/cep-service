@@ -1,5 +1,9 @@
-import { Model, DataTypes } from 'sequelize'
-import sequelize from '.'
+import { Model, DataTypes } from 'sequelize';
+
+import sequelize from '.';
+import Post from './post.model';
+import Faq from './faq.model';
+import User from './user.model';
 
 class Category extends Model {}
 
@@ -11,35 +15,59 @@ Category.init({
   },
   code: {
     type: DataTypes.STRING,
-    allowNull: false,
   },
   parentId: {
     type: DataTypes.UUID,
-    allowNull: false,
+    references: {
+      model: 'Category',
+      key: 'id'
+    }
   },
   count: {
     type: DataTypes.NUMBER,
-    allowNull: false,
   },
   orderBy: {
     type: DataTypes.NUMBER,
-    allowNull: false,
   },
   keyword: {
     type: DataTypes.TEXT,
-    allowNull: false,
   },
   createdBy: {
     type: DataTypes.UUID,
-    allowNull: false,
+    references: {
+      model: 'User',
+      key: 'id'
+    }
   },
   updatedBy: {
     type: DataTypes.UUID,
-    allowNull: false,
+    references: {
+      model: 'User',
+      key: 'id'
+    }
   },
 }, {
   sequelize,
   modelName: 'Category'
-})
+});
 
-export default Category
+Category.hasMany(Post, {
+  as: 'post',
+  foreignKey: 'categoryId',
+});
+Category.hasMany(Faq, {
+  as: 'faq',
+  foreignKey: 'categoryId'
+})
+Category.hasOne(Category, {
+  as: 'category',
+  foreignKey: 'parentId'
+});
+Category.belongsTo(User), {
+  foreignKey: 'createdBy'
+};
+Category.belongsTo(User), {
+  foreignKey: 'updatedBy'
+};
+
+export default Category;

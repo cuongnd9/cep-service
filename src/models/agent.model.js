@@ -1,7 +1,9 @@
-import { Model, DataTypes } from 'sequelize'
-import sequelize from '.'
+import { Model, DataTypes } from 'sequelize';
 
-class Agent extends Model {}
+import sequelize from '.';
+import User from './user.model';
+
+class Agent extends Model { }
 
 Agent.init({
   id: {
@@ -11,35 +13,45 @@ Agent.init({
   },
   userId: {
     type: DataTypes.UUID,
-    allowNull: false,
+    references: {
+      model: 'User',
+      key: 'id'
+    }
   },
   referenceId: {
     type: DataTypes.UUID,
-    allowNull: false,
+    references: {
+      model: 'Agent',
+      key: 'id'
+    }
   },
   roles: {
-    type: DataTypes.ENUM[''],
-    allowNull: false,
+    type: DataTypes.TEXT, // FIXME: ENUM
+    allowNull: true,
   },
   official: {
     type: DataTypes.TEXT,
-    allowNull: false,
   },
   room: {
     type: DataTypes.TEXT,
-    allowNull: false,
   },
   officialAddress: {
     type: DataTypes.TEXT,
-    allowNull: false,
   },
   officialPhone: {
     type: DataTypes.TEXT,
-    allowNull: false,
   },
 }, {
   sequelize,
   modelName: 'Agent'
-})
+});
 
-export default Agent
+Agent.belongsTo(User, {
+  foreignKey: 'userId'
+});
+Agent.hasOne(Agent, {
+  as: 'agent',
+  foreignKey: 'referenceId',
+});
+
+export default Agent;

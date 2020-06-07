@@ -1,5 +1,8 @@
-import { Model, DataTypes } from 'sequelize'
-import sequelize from '.'
+import { Model, DataTypes } from 'sequelize';
+
+import sequelize from '.';
+import User from './user.model';
+import Relationship from './relationship.model';
 
 class Family extends Model {}
 
@@ -11,15 +14,29 @@ Family.init({
   },
   name: {
     type: DataTypes.TEXT,
-    allowNull: false,
   },
   headOfFamily: {
     type: DataTypes.UUID,
-    allowNull: false,
+    references: {
+      model: 'User',
+      key: 'id'
+    }
   },
 }, {
   sequelize,
   modelName: 'Family'
-})
+});
 
-export default Family
+Family.hasMany(FamilyActivity, {
+  as: 'familyActivity',
+  foreignKey: 'familyId'
+})
+Family.hasMany(Relationship, {
+  as: 'relationship',
+  foreignKey: 'familyId'
+});
+Family.belongsTo(User, {
+  foreignKey: 'headOfFamily'
+});
+
+export default Family;

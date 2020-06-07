@@ -1,7 +1,9 @@
-import { Model, DataTypes } from 'sequelize'
-import sequelize from '.'
+import { Model, DataTypes } from 'sequelize';
 
-class Account extends Model {}
+import sequelize from '.';
+import User from './user.model';
+
+class Account extends Model { }
 
 Account.init({
   id: {
@@ -11,23 +13,30 @@ Account.init({
   },
   username: {
     type: DataTypes.TEXT,
-    allowNull: false,
+    unique: true,
+    defaultValue: DataTypes.UUIDV4
   },
   password: {
     type: DataTypes.TEXT,
-    allowNull: false,
   },
-  roles: {
-    type: DataTypes.ENUM(['admin']),
-    allowNull: false,
+  role: {
+    type: DataTypes.ENUM('admin'),
+    allowNull: true,
   },
   userId: {
-    type: DataTypes.TEXT,
-    allowNull: false,
+    type: DataTypes.UUID,
+    references: {
+      model: 'User',
+      key: 'id'
+    }
   },
 }, {
   sequelize,
   modelName: 'Account'
-})
+});
+
+Account.belongsTo(User, {
+  foreignKey: 'userId'
+});
 
 export default Account

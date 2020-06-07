@@ -1,5 +1,10 @@
-import { Model, DataTypes } from 'sequelize'
-import sequelize from '.'
+import { Model, DataTypes } from 'sequelize';
+
+import sequelize from '.';
+import Category from './category.model';
+import Image from './image.model';
+import PostImage from './postImage.model';
+import User from './user.model';
 
 class Post extends Model {}
 
@@ -11,43 +16,66 @@ Post.init({
   },
   categoryId: {
     type: DataTypes.UUID,
-    allowNull: false,
-  },
-  imageId: {
-    type: DataTypes.UUID,
-    allowNull: false,
+    references: {
+      model: 'Category',
+      key: 'id'
+    }
   },
   title: {
     type: DataTypes.TEXT,
-    allowNull: false,
   },
   shortDescription: {
     type: DataTypes.TEXT,
-    allowNull: false,
+    allowNull: true
   },
   longDescription: {
     type: DataTypes.TEXT,
-    allowNull: false,
+    allowNull: true
   },
   thumbnail: {
-    type: DataTypes.TEXT,
-    allowNull: false,
+    type: DataTypes.UUID,
+    references: {
+      model: 'Image',
+      key: 'id'
+    }
   },
   keyword: {
     type: DataTypes.TEXT,
-    allowNull: false,
   },
   createdBy: {
     type: DataTypes.UUID,
-    allowNull: false,
+    references: {
+      model: 'User',
+      key: 'id'
+    }
   },
   updatedBy: {
     type: DataTypes.UUID,
-    allowNull: false,
+    references: {
+      model: 'User',
+      key: 'id'
+    }
   },
 }, {
   sequelize,
   modelName: 'Post'
-})
+});
+
+Post.hasMany(PostImage, {
+  as: 'postImage',
+  foreignKey: 'postId'
+});
+Post.belongsTo(Image, {
+  foreignKey: 'thumbnail'
+});
+Post.belongsTo(Category, {
+  foreignKey: 'categoryId'
+});
+Post.belongsTo(User), {
+  foreignKey: 'createdBy'
+};
+Post.belongsTo(User), {
+  foreignKey: 'updatedBy'
+};
 
 export default Post

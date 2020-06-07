@@ -1,5 +1,7 @@
-import { Model, DataTypes } from 'sequelize'
-import sequelize from '.'
+import { Model, DataTypes } from 'sequelize';
+
+import sequelize from '.';
+import Relationship from './relationship.model';
 
 class RoleType extends Model {}
 
@@ -11,11 +13,19 @@ RoleType.init({
   },
   description: {
     type: DataTypes.TEXT,
-    allowNull: false,
   },
 }, {
   sequelize,
   modelName: 'RoleType'
-})
+});
+
+RoleType.hasMany(Relationship, {
+  as: 'relationshipRoleType1',
+  foreignKey: 'roleType1'
+});
+RoleType.hasMany(Relationship, {
+  as: 'relationshipRoleType2',
+  foreignKey: 'roleType2'
+});
 
 export default RoleType
