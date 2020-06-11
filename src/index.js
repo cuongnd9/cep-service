@@ -4,10 +4,11 @@ import { migrateDB } from './components/utils';
 import sequelize from './models';
 import app from './app';
 
-const pathToMigration = path.join(__dirname, 'migrations');
+const main = async () => {
+  // await sequelize.sync({ force: true }).catch(signale.watch);
+  const pathToMigration = path.join(__dirname, 'migrations');
+  await migrateDB(sequelize, pathToMigration).catch(signale.watch);
+  app();
+};
 
-migrateDB(sequelize, pathToMigration)
-  .then(() => {
-    app();
-  })
-  .catch((e) => signale.watch(e));
+main();
