@@ -1,9 +1,9 @@
 import { Model, DataTypes } from 'sequelize';
 
 import sequelize from '.';
-import Post from './post.model';
-import Image from './image.model';
-import User from './user.model';
+// import Post from './post.model';
+// import Image from './image.model';
+// import User from './user.model';
 
 class PostImage extends Model { }
 
@@ -46,17 +46,17 @@ PostImage.init({
   modelName: 'PostImage'
 });
 
-PostImage.belongsTo(Post, {
-  foreignKey: 'postId'
-});
-PostImage.belongsTo(Image, {
-  foreignKey: 'imageId'
-});
-PostImage.belongsTo(User), {
-  foreignKey: 'createdBy'
-};
-PostImage.belongsTo(User), {
-  foreignKey: 'updatedBy'
-};
+// PostImage.belongsTo(Post, {
+//   foreignKey: 'postId'
+// });
+// PostImage.belongsTo(Image, {
+//   foreignKey: 'imageId'
+// });
+// PostImage.belongsTo(User), {
+//   foreignKey: 'createdBy'
+// };
+// PostImage.belongsTo(User), {
+//   foreignKey: 'updatedBy'
+// };
 
 export default PostImage;

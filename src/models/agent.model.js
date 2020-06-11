@@ -1,7 +1,7 @@
 import { Model, DataTypes } from 'sequelize';
 
 import sequelize from '.';
-import User from './user.model';
+// import User from './user.model';
 
 class Agent extends Model { }
 
@@ -46,9 +46,9 @@ Agent.init({
   modelName: 'Agent'
 });
 
-Agent.belongsTo(User, {
-  foreignKey: 'userId'
-});
+// Agent.belongsTo(User, {
+//   foreignKey: 'userId'
+// });
 Agent.hasOne(Agent, {
   as: 'agent',
   foreignKey: 'referenceId',

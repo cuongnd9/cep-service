@@ -1,9 +1,9 @@
 import { Model, DataTypes } from 'sequelize';
 
 import sequelize from '.';
-import User from './user.model';
-import Family from './family.model';
-import RoleType from './roleType.model';
+// import User from './user.model';
+// import Family from './family.model';
+// import RoleType from './roleType.model';
 
 class Relationship extends Model {}
 
@@ -57,20 +57,20 @@ Relationship.init({
   modelName: 'Relationship'
 });
 
-Relationship.belongsTo(Family, {
-  foreignKey: 'familyId'
-})
-Relationship.belongsTo(User, {
-  foreignKey: 'userId1'
-});
-Relationship.belongsTo(User, {
-  foreignKey: 'userId2'
-});
-Relationship.belongsTo(RoleType, {
-  foreignKey: 'roleType1'
-});
-Relationship.belongsTo(RoleType, {
-  foreignKey: 'roleType2'
-});
+// Relationship.belongsTo(Family, {
+//   foreignKey: 'familyId'
+// })
+// Relationship.belongsTo(User, {
+//   foreignKey: 'userId1'
+// });
+// Relationship.belongsTo(User, {
+//   foreignKey: 'userId2'
+// });
+// Relationship.belongsTo(RoleType, {
+//   foreignKey: 'roleType1'
+// });
+// Relationship.belongsTo(RoleType, {
+//   foreignKey: 'roleType2'
+// });
 
 export default Relationship;

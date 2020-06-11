@@ -1,8 +1,8 @@
 import { Model, DataTypes } from 'sequelize';
 
 import sequelize from '.';
-import User from './user.model';
-import Category from './category.model';
+// import User from './user.model';
+// import Category from './category.model';
 
 class Faq extends Model {}
 
@@ -54,14 +54,14 @@ Faq.init({
 Faq.hasOne(Faq, {
   foreignKey: 'refId'
 })
-Faq.belongsTo(Category, {
-  foreignKey: 'categoryId'
-})
-Faq.belongsTo(User), {
-  foreignKey: 'createdBy'
-};
-Faq.belongsTo(User), {
-  foreignKey: 'updatedBy'
-};
+// Faq.belongsTo(Category, {
+//   foreignKey: 'categoryId'
+// })
+// Faq.belongsTo(User), {
+//   foreignKey: 'createdBy'
+// };
+// Faq.belongsTo(User), {
+//   foreignKey: 'updatedBy'
+// };
 
 export default Faq;

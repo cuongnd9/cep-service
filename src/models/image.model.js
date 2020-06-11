@@ -43,21 +43,20 @@ Image.hasMany(PostImage, {
   as: 'postImage',
   foreignKey: 'imageId'
 });
-Image.hasOne(User, {
-  as: 'user',
-  foreignKey: 'imageId'
-});
+// Image.hasOne(User, {
+//   foreignKey: 'imageId'
+// });
 Image.hasMany(Activity, {
   foreignKey: 'imageId'
 });
 Image.hasOne(DiaryNote, {
   foreignKey: 'imageId'
-})
-Image.belongsTo(User), {
-  foreignKey: 'createdBy'
-};
-Image.belongsTo(User), {
-  foreignKey: 'updatedBy'
-};
+});
+// Image.belongsTo(User), {
+//   foreignKey: 'createdBy'
+// };
+// Image.belongsTo(User), {
+//   foreignKey: 'updatedBy'
+// };
 
 export default Image

@@ -152,8 +152,8 @@ User.hasMany(DiaryNote, {
   as: 'ddiaryNoteUpdatedBy',
   foreignKey: 'updatedBy'
 });
-User.belongsTo(Image, {
-  foreignKey: 'imageId'
-});
+// User.belongsTo(Image, {
+//   foreignKey: 'imageId'
+// });
 
 export default User;

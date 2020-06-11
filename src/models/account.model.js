@@ -1,9 +1,9 @@
 import { Model, DataTypes } from 'sequelize';
 
 import sequelize from '.';
-import User from './user.model';
+// import User from './user.model';
 
-class Account extends Model { }
+class Account extends Model {}
 
 Account.init({
   id: {
@@ -35,8 +35,8 @@ Account.init({
   modelName: 'Account'
 });
 
-Account.belongsTo(User, {
-  foreignKey: 'userId'
-});
+// Account.belongsTo(User, {
+//   foreignKey: 'userId'
+// });
 
 export default Account

@@ -1,8 +1,9 @@
 import { Model, DataTypes } from 'sequelize';
 
 import sequelize from '.';
-import User from './user.model';
+// import User from './user.model';
 import Relationship from './relationship.model';
+import FamilyActivity from './familyActivity.model';
 
 class Family extends Model {}
 
@@ -35,8 +36,8 @@ Family.hasMany(Relationship, {
   as: 'relationship',
   foreignKey: 'familyId'
 });
-Family.belongsTo(User, {
-  foreignKey: 'headOfFamily'
-});
+// Family.belongsTo(User, {
+//   foreignKey: 'headOfFamily'
+// });
 
 export default Family;

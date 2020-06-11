@@ -1,10 +1,10 @@
 import { Model, DataTypes } from 'sequelize';
 
 import sequelize from '.';
-import Category from './category.model';
-import Image from './image.model';
+// import Category from './category.model';
+// import Image from './image.model';
 import PostImage from './postImage.model';
-import User from './user.model';
+// import User from './user.model';
 
 class Post extends Model {}
 
@@ -65,17 +65,17 @@ Post.hasMany(PostImage, {
   as: 'postImage',
   foreignKey: 'postId'
 });
-Post.belongsTo(Image, {
-  foreignKey: 'thumbnail'
-});
-Post.belongsTo(Category, {
-  foreignKey: 'categoryId'
-});
-Post.belongsTo(User), {
-  foreignKey: 'createdBy'
-};
-Post.belongsTo(User), {
-  foreignKey: 'updatedBy'
-};
+// Post.belongsTo(Image, {
+//   foreignKey: 'thumbnail'
+// });
+// Post.belongsTo(Category, {
+//   foreignKey: 'categoryId'
+// });
+// Post.belongsTo(User), {
+//   foreignKey: 'createdBy'
+// };
+// Post.belongsTo(User), {
+//   foreignKey: 'updatedBy'
+// };
 
 export default Post

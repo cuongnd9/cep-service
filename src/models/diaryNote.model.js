@@ -1,9 +1,9 @@
 import { Model, DataTypes } from 'sequelize';
 
 import sequelize from '.';
-import User from './user.model';
-import Image from './image.model';
-import Activity from './activity.model';
+// import User from './user.model';
+// import Image from './image.model';
+// import Activity from './activity.model';
 
 class DiaryNote extends Model {}
 
@@ -46,7 +46,7 @@ DiaryNote.init({
     type: DataTypes.UUID,
     references: {
       model: 'DiaryNote',
-      key: id
+      key: 'id'
     }
   },
   notes: {
@@ -83,20 +83,20 @@ DiaryNote.init({
 DiaryNote.hasOne(DiaryNote, {
   foreignKey: 'refId'
 })
-DiaryNote.belongsTo(Image, {
-  foreignKey: 'imageId'
-})
-DiaryNote.belongsTo(User), {
-  foreignKey: 'userId'
-};
-DiaryNote.belongsTo(Activity, {
-  foreignKey: 'activityId'
-})
-DiaryNote.belongsTo(User), {
-  foreignKey: 'createdBy'
-};
-DiaryNote.belongsTo(User), {
-  foreignKey: 'updatedBy'
-};
+// DiaryNote.belongsTo(Image, {
+//   foreignKey: 'imageId'
+// })
+// DiaryNote.belongsTo(User), {
+//   foreignKey: 'userId'
+// };
+// DiaryNote.belongsTo(Activity, {
+//   foreignKey: 'activityId'
+// })
+// DiaryNote.belongsTo(User), {
+//   foreignKey: 'createdBy'
+// };
+// DiaryNote.belongsTo(User), {
+//   foreignKey: 'updatedBy'
+// };
 
 export default DiaryNote;

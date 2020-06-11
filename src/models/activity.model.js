@@ -1,12 +1,12 @@
 import { Model, DataTypes } from 'sequelize';
 
 import sequelize from '.';
-import Image from './image.model';
-import User from './user.model';
+// import Image from './image.model';
+// import User from './user.model';
 import FamilyActivity from './familyActivity.model';
 import DiaryNote from './diaryNote.model';
 
-class Activity extends Model {}
+class Activity extends Model { }
 
 Activity.init({
   id: {
@@ -71,14 +71,14 @@ Activity.hasMany(FamilyActivity, {
 Activity.hasMany(DiaryNote, {
   foreignKey: 'activityId'
 })
-Activity.belongsTo(Image, {
-  foreignKey: 'imageId'
-})
-Activity.belongsTo(User), {
-  foreignKey: 'createdBy'
-};
-Activity.belongsTo(User), {
-  foreignKey: 'updatedBy'
-};
+// Activity.belongsTo(Image, {
+//   foreignKey: 'imageId'
+// })
+// Activity.belongsTo(User), {
+//   foreignKey: 'createdBy'
+// };
+// Activity.belongsTo(User), {
+//   foreignKey: 'updatedBy'
+// };
 
 export default Activity

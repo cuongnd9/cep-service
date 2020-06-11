@@ -3,7 +3,7 @@ import { Model, DataTypes } from 'sequelize';
 import sequelize from '.';
 import Post from './post.model';
 import Faq from './faq.model';
-import User from './user.model';
+// import User from './user.model';
 
 class Category extends Model {}
 
@@ -63,11 +63,11 @@ Category.hasOne(Category, {
   as: 'category',
   foreignKey: 'parentId'
 });
-Category.belongsTo(User), {
-  foreignKey: 'createdBy'
-};
-Category.belongsTo(User), {
-  foreignKey: 'updatedBy'
-};
+// Category.belongsTo(User), {
+//   foreignKey: 'createdBy'
+// };
+// Category.belongsTo(User), {
+//   foreignKey: 'updatedBy'
+// };
 
 export default Category;
