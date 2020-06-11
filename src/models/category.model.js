@@ -1,73 +1,71 @@
 import { Model, DataTypes } from 'sequelize';
 
-import sequelize from '.';
-import Post from './post.model';
-import Faq from './faq.model';
-// import User from './user.model';
+class Category extends Model {
+  static init(sequelize) {
+    super.init({
+      id: {
+        type: DataTypes.UUID,
+        primaryKey: true,
+        defaultValue: DataTypes.UUIDV4
+      },
+      code: {
+        type: DataTypes.STRING,
+      },
+      parentId: {
+        type: DataTypes.UUID,
+        references: {
+          model: 'categories',
+          key: 'id'
+        }
+      },
+      count: {
+        type: DataTypes.NUMBER,
+      },
+      orderBy: {
+        type: DataTypes.NUMBER,
+      },
+      keyword: {
+        type: DataTypes.TEXT,
+      },
+      createdBy: {
+        type: DataTypes.UUID,
+        references: {
+          model: 'users',
+          key: 'id'
+        }
+      },
+      updatedBy: {
+        type: DataTypes.UUID,
+        references: {
+          model: 'users',
+          key: 'id'
+        }
+      },
+    }, {
+      sequelize,
+      modelName: 'categories'
+    });
+  }
 
-class Category extends Model {}
-
-Category.init({
-  id: {
-    type: DataTypes.UUID,
-    primaryKey: true,
-    defaultValue: DataTypes.UUIDV4
-  },
-  code: {
-    type: DataTypes.STRING,
-  },
-  parentId: {
-    type: DataTypes.UUID,
-    references: {
-      model: 'Category',
-      key: 'id'
-    }
-  },
-  count: {
-    type: DataTypes.NUMBER,
-  },
-  orderBy: {
-    type: DataTypes.NUMBER,
-  },
-  keyword: {
-    type: DataTypes.TEXT,
-  },
-  createdBy: {
-    type: DataTypes.UUID,
-    references: {
-      model: 'User',
-      key: 'id'
-    }
-  },
-  updatedBy: {
-    type: DataTypes.UUID,
-    references: {
-      model: 'User',
-      key: 'id'
-    }
-  },
-}, {
-  sequelize,
-  modelName: 'Category'
-});
-
-Category.hasMany(Post, {
-  as: 'post',
-  foreignKey: 'categoryId',
-});
-Category.hasMany(Faq, {
-  as: 'faq',
-  foreignKey: 'categoryId'
-})
-Category.hasOne(Category, {
-  as: 'category',
-  foreignKey: 'parentId'
-});
-// Category.belongsTo(User), {
-//   foreignKey: 'createdBy'
-// };
-// Category.belongsTo(User), {
-//   foreignKey: 'updatedBy'
-// };
+  static associate(models) {
+    this.hasMany(models.Post, {
+      foreignKey: 'categoryId',
+    });
+    this.hasMany(models.Faq, {
+      foreignKey: 'categoryId'
+    })
+    this.hasOne(models.Category, {
+      foreignKey: 'parentId'
+    });
+    this.belongsTo(models.User), {
+      as: 'createdBy',
+      foreignKey: 'createdBy'
+    };
+    this.belongsTo(models.User), {
+      as: 'updatedBy',
+      foreignKey: 'updatedBy'
+    };
+  }
+}
 
 export default Category;

@@ -1,41 +1,41 @@
 import { Model, DataTypes } from 'sequelize';
 
-import sequelize from '.';
-// import Family from './family.model';
-// import Activity from './activity.model';
+class FamilyActivity extends Model {
+  static init(sequelize) {
+    super.init({
+      id: {
+        type: DataTypes.UUID,
+        primaryKey: true,
+        defaultValue: DataTypes.UUIDV4
+      },
+      familyId: {
+        type: DataTypes.UUID,
+        references: {
+          model: 'families',
+          key: 'id'
+        }
+      },
+      activityId: {
+        type: DataTypes.UUID,
+        references: {
+          model: 'activities',
+          key: 'id'
+        }
+      },
+    }, {
+      sequelize,
+      modelName: 'familyActivities'
+    });
+  }
 
-class FamilyActivity extends Model {}
-
-FamilyActivity.init({
-  id: {
-    type: DataTypes.UUID,
-    primaryKey: true,
-    defaultValue: DataTypes.UUIDV4
-  },
-  familyId: {
-    type: DataTypes.UUID,
-    references: {
-      model: 'Family',
-      key: 'id'
-    }
-  },
-  activityId: {
-    type: DataTypes.UUID,
-    references: {
-      model: 'Activity',
-      key: 'id'
-    }
-  },
-}, {
-  sequelize,
-  modelName: 'FamilyActivity'
-});
-
-// FamilyActivity.belongsTo(Family, {
-//   foreignKey: 'familyId'
-// });
-// FamilyActivity.belongsTo(Activity, {
-//   foreignKey: 'activityId'
-// });
+  static associate(models) {
+    this.belongsTo(models.Family, {
+      foreignKey: 'familyId'
+    });
+    this.belongsTo(models.Activity, {
+      foreignKey: 'activityId'
+    });
+  }
+}
 
 export default FamilyActivity;

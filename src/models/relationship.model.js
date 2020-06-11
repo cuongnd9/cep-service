@@ -1,76 +1,79 @@
 import { Model, DataTypes } from 'sequelize';
 
-import sequelize from '.';
-// import User from './user.model';
-// import Family from './family.model';
-// import RoleType from './roleType.model';
+class Relationship extends Model {
+  static init(sequelize) {
+    super.init({
+      id: {
+        type: DataTypes.UUID,
+        primaryKey: true,
+        defaultValue: DataTypes.UUIDV4
+      },
+      familyId: {
+        type: DataTypes.UUID,
+        references: {
+          model: 'families',
+          key: 'id'
+        }
+      },
+      userId1: {
+        type: DataTypes.UUID,
+        references: {
+          model: 'users',
+          key: 'id'
+        }
+      },
+      userId2: {
+        type: DataTypes.UUID,
+        references: {
+          model: 'users',
+          key: 'id'
+        }
+      },
+      relationship: {
+        type: DataTypes.TEXT, // FIXME: ENUM
+        allowNull: true,
+      },
+      roleType1: {
+        type: DataTypes.UUID,
+        references: {
+          model: 'roleTypes',
+          key: 'id'
+        }
+      },
+      roleType2: {
+        type: DataTypes.UUID,
+        references: {
+          model: 'roleTypes',
+          key: 'id'
+        }
+      },
+    }, {
+      sequelize,
+      modelName: 'relationships'
+    });
+  }
 
-class Relationship extends Model {}
-
-Relationship.init({
-  id: {
-    type: DataTypes.UUID,
-    primaryKey: true,
-    defaultValue: DataTypes.UUIDV4
-  },
-  familyId: {
-    type: DataTypes.UUID,
-    references: {
-      model: 'Family',
-      key: 'id'
-    }
-  },
-  userId1: {
-    type: DataTypes.UUID,
-    references: {
-      model: 'User',
-      key: 'id'
-    }
-  },
-  userId2: {
-    type: DataTypes.UUID,
-    references: {
-      model: 'User',
-      key: 'id'
-    }
-  },
-  relationship: {
-    type: DataTypes.TEXT, // FIXME: ENUM
-    allowNull: true,
-  },
-  roleType1: {
-    type: DataTypes.UUID,
-    references: {
-      model: 'RoleType',
-      key: 'id'
-    }
-  },
-  roleType2: {
-    type: DataTypes.UUID,
-    references: {
-      model: 'RoleType',
-      key: 'id'
-    }
-  },
-}, {
-  sequelize,
-  modelName: 'Relationship'
-});
-
-// Relationship.belongsTo(Family, {
-//   foreignKey: 'familyId'
-// })
-// Relationship.belongsTo(User, {
-//   foreignKey: 'userId1'
-// });
-// Relationship.belongsTo(User, {
-//   foreignKey: 'userId2'
-// });
-// Relationship.belongsTo(RoleType, {
-//   foreignKey: 'roleType1'
-// });
-// Relationship.belongsTo(RoleType, {
-//   foreignKey: 'roleType2'
-// });
+  static associate(models) {
+    this.belongsTo(models.Family, {
+      foreignKey: 'familyId'
+    })
+    this.belongsTo(models.User, {
+      as: 'user1',
+      foreignKey: 'userId1'
+    });
+    this.belongsTo(models.User, {
+      as: 'user2',
+      foreignKey: 'userId2'
+    });
+    this.belongsTo(models.RoleType, {
+      as: 'role1',
+      foreignKey: 'roleType1'
+    });
+    this.belongsTo(models.RoleType, {
+      as: 'role2',
+      foreignKey: 'roleType2'
+    });
+  }
+}
 
 export default Relationship;
