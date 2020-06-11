@@ -19,10 +19,10 @@ class Category extends Model {
         }
       },
       count: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.INTEGER,
       },
       orderBy: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.INTEGER,
       },
       keyword: {
         type: DataTypes.TEXT,

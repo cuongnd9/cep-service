@@ -19,10 +19,10 @@ class User extends Model {
       // imageId: {
       //   type: DataTypes.UUID,
       //   allowNull: true,
-        // references: {
-        //   model: 'images',
-        //   key: 'id'
-        // }
+      //   references: {
+      //     model: 'images',
+      //     key: 'id'
+      //   }
       // },
       phone: {
         type: DataTypes.TEXT,
