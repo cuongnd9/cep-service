@@ -25,7 +25,7 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     volumes:
-      - postgres:/var/lib/postgresql/data
+      - db:/var/lib/postgresql/data
     networks:
       - cep-net
 
@@ -33,4 +33,4 @@ networks:
   cep-net:
 
 volumes:
-  postgres: null
+  db: null

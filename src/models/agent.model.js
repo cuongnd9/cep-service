@@ -1,57 +1,57 @@
 import { Model, DataTypes } from 'sequelize';
 
-import sequelize from '.';
-// import User from './user.model';
+class Agent extends Model {
+  static init(sequelize) {
+    super.init({
+      id: {
+        type: DataTypes.UUID,
+        primaryKey: true,
+        defaultValue: DataTypes.UUIDV4
+      },
+      userId: {
+        type: DataTypes.UUID,
+        references: {
+          model: 'users',
+          key: 'id'
+        }
+      },
+      referenceId: {
+        type: DataTypes.UUID,
+        references: {
+          model: 'agents',
+          key: 'id'
+        }
+      },
+      roles: {
+        type: DataTypes.TEXT, // FIXME: ENUM
+        allowNull: true,
+      },
+      official: {
+        type: DataTypes.TEXT,
+      },
+      room: {
+        type: DataTypes.TEXT,
+      },
+      officialAddress: {
+        type: DataTypes.TEXT,
+      },
+      officialPhone: {
+        type: DataTypes.TEXT,
+      },
+    }, {
+      sequelize,
+      modelName: 'agents'
+    });
+  }
 
-class Agent extends Model { }
-
-Agent.init({
-  id: {
-    type: DataTypes.UUID,
-    primaryKey: true,
-    defaultValue: DataTypes.UUIDV4
-  },
-  userId: {
-    type: DataTypes.UUID,
-    references: {
-      model: 'User',
-      key: 'id'
-    }
-  },
-  referenceId: {
-    type: DataTypes.UUID,
-    references: {
-      model: 'Agent',
-      key: 'id'
-    }
-  },
-  roles: {
-    type: DataTypes.TEXT, // FIXME: ENUM
-    allowNull: true,
-  },
-  official: {
-    type: DataTypes.TEXT,
-  },
-  room: {
-    type: DataTypes.TEXT,
-  },
-  officialAddress: {
-    type: DataTypes.TEXT,
-  },
-  officialPhone: {
-    type: DataTypes.TEXT,
-  },
-}, {
-  sequelize,
-  modelName: 'Agent'
-});
-
-// Agent.belongsTo(User, {
-//   foreignKey: 'userId'
-// });
-Agent.hasOne(Agent, {
-  as: 'agent',
-  foreignKey: 'referenceId',
-});
+  static associate(models) {
+    this.belongsTo(models.User, {
+      foreignKey: 'userId'
+    });
+    this.hasOne(models.Agent, {
+      foreignKey: 'referenceId',
+    });
+  }
+}
 
 export default Agent;
