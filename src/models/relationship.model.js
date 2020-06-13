@@ -36,14 +36,14 @@ class Relationship extends Model {
       roleType1: {
         type: DataTypes.UUID,
         references: {
-          model: 'roleTypes',
+          model: 'role_types',
           key: 'id'
         }
       },
       roleType2: {
         type: DataTypes.UUID,
         references: {
-          model: 'roleTypes',
+          model: 'role_types',
           key: 'id'
         }
       },

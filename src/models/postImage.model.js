@@ -38,7 +38,7 @@ class PostImage extends Model {
       },
     }, {
       sequelize,
-      modelName: 'postImages'
+      modelName: 'post_images'
     });
   }
 

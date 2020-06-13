@@ -16,14 +16,14 @@ class User extends Model {
         type: DataTypes.TEXT,
         allowNull: true,
       },
-      // imageId: {
-      //   type: DataTypes.UUID,
-      //   allowNull: true,
-      //   references: {
-      //     model: 'images',
-      //     key: 'id'
-      //   }
-      // },
+      imageId: {
+        type: DataTypes.UUID,
+        allowNull: true,
+        references: {
+          model: 'images',
+          key: 'id'
+        }
+      },
       phone: {
         type: DataTypes.TEXT,
         unique: true,

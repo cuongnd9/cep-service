@@ -24,7 +24,7 @@ class FamilyActivity extends Model {
       },
     }, {
       sequelize,
-      modelName: 'familyActivities'
+      modelName: 'family_activities'
     });
   }
 

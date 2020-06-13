@@ -40,7 +40,7 @@ class DiaryNote extends Model {
       refId: {
         type: DataTypes.UUID,
         references: {
-          model: 'diaryNotes',
+          model: 'diary_notes',
           key: 'id'
         }
       },
@@ -72,7 +72,7 @@ class DiaryNote extends Model {
       },
     }, {
       sequelize,
-      modelName: 'diaryNotes'
+      modelName: 'diary_notes'
     });
   }
 

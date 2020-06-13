@@ -16,7 +16,7 @@ class RoleType extends Model {
       },
     }, {
       sequelize,
-      modelName: 'roleTypes'
+      modelName: 'role_types'
     });
   }
 
