@@ -1,10 +1,36 @@
 import { thinid } from 'thinid';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 import db from '../models';
-import { ExistsError } from '../components/errors';
+import config from '../components/config';
+import { ExistsError, AuthenticationError } from '../components/errors';
 
 class AccountService {
+  static async login(data) {
+    const { phone, password } = data;
+    const user = await db.User.findOne({ where: { phone } });
+    if (!user) {
+      throw new AuthenticationError('Account does not exists');
+    }
+    const account = await db.Account.findOne({ where: { userId: user.id } });
+    const match = await bcrypt.compare(password, account.password);
+    if (!match) {
+      throw new AuthenticationError('Password is incorrect');
+    }
+    const { id, role } = account;
+    const { secretKey, algorithm } = config.jwt;
+    const payload = {
+      id,
+      role,
+    };
+    const token = jwt.sign(payload, secretKey, { algorithm });
+    return {
+      token,
+      phone,
+    };
+  }
+
   static async register(data) {
     const { password, ...userData } = data;
     const existsUser = await db.User.findOne({ where: { phone: userData.phone } });

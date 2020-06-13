@@ -30,7 +30,7 @@ class Account extends Model {
       },
     }, {
       sequelize,
-      modelName: 'accounts'
+      modelName: 'accounts',
     });
   }
 
