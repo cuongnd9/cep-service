@@ -47,3 +47,15 @@ export class SchemaValidationError extends BusinessError {
     this.extensions.payload = payload;
   }
 }
+
+export class NotFoundError extends BusinessError {
+  constructor(message = 'There is not found error happened') {
+    super(message);
+  }
+}
+
+export class ExistsError extends BusinessError {
+  constructor(message = 'There is exists error happened') {
+    super(message);
+  }
+}

@@ -19,6 +19,7 @@ class Account extends Model {
       role: {
         type: DataTypes.ENUM('admin'),
         allowNull: true,
+        defaultValue: 'admin'
       },
       userId: {
         type: DataTypes.UUID,
