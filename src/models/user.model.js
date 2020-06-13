@@ -47,7 +47,7 @@ class User extends Model {
         allowNull: true,
       },
       permanentAddress: {
-        type: DataTypes.TEXT,
+        type: DataTypes.JSONB,
         allowNull: true,
       },
       nationalId: {
