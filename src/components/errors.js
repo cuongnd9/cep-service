@@ -48,6 +48,18 @@ export class SchemaValidationError extends BusinessError {
   }
 }
 
+export class AuthenticationError extends BusinessError {
+  constructor(message = 'There is authentication error happened') {
+    super(message);
+  }
+}
+
+export class AuthorizationError extends BusinessError {
+  constructor(message = 'There is authorization error happened') {
+    super(message);
+  }
+}
+
 export class NotFoundError extends BusinessError {
   constructor(message = 'There is not found error happened') {
     super(message);
