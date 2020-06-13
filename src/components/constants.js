@@ -1,5 +1,4 @@
-export const ROLES = {
-  admin: 'ADMIN',
-  manager: 'MANAGER',
-  staff: 'STAFF',
+export const POLICY = {
+  public: 'PUBLIC',
+  private: 'PRIVATE',
 };

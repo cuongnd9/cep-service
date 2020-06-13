@@ -255,7 +255,6 @@
     id uuid NOT NULL,
     title text NULL,
     notes text NULL,
-    user_id uuid NULL,
     activity_id uuid NULL,
     image_id uuid NULL,
     ref_id uuid NULL,
@@ -271,7 +270,6 @@
     CONSTRAINT diary_notes_image_id_fkey FOREIGN KEY (image_id) REFERENCES images(id),
     CONSTRAINT diary_notes_ref_id_fkey FOREIGN KEY (ref_id) REFERENCES diary_notes(id),
     CONSTRAINT diary_notes_updated_by_fkey FOREIGN KEY (updated_by) REFERENCES users(id),
-    CONSTRAINT diary_notes_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(id)
   );
 
 
