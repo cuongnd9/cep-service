@@ -130,10 +130,6 @@ class User extends Model {
       foreignKey: 'updatedBy'
     });
     this.hasMany(models.DiaryNote, {
-      as: 'diaryNoteUserId',
-      foreignKey: 'userId'
-    });
-    this.hasMany(models.DiaryNote, {
       as: 'diaryNoteCreatedBy',
       foreignKey: 'createdBy'
     });

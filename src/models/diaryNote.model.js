@@ -1,5 +1,7 @@
 import { Model, DataTypes } from 'sequelize';
 
+import { POLICY } from '../components/constants';
+
 class DiaryNote extends Model {
   static init(sequelize) {
     super.init({
@@ -16,36 +18,28 @@ class DiaryNote extends Model {
         type: DataTypes.TEXT,
         allowNull: true,
       },
-      userId: {
-        type: DataTypes.UUID,
-        references: {
-          model: 'users',
-          key: 'id'
-        }
-      },
       activityId: {
         type: DataTypes.UUID,
         references: {
           model: 'activities',
           key: 'id'
-        }
+        },
+        allowNull: true
       },
       imageId: {
         type: DataTypes.UUID,
         references: {
           model: 'images',
           key: 'id'
-        }
+        },
+        allowNull: true
       },
       refId: {
         type: DataTypes.UUID,
         references: {
           model: 'diary_notes',
           key: 'id'
-        }
-      },
-      notes: {
-        type: DataTypes.TEXT,
+        },
         allowNull: true
       },
       status: {
@@ -53,7 +47,7 @@ class DiaryNote extends Model {
         allowNull: true,
       },
       policy: {
-        type: DataTypes.TEXT, // FIXME: ENUM
+        type: DataTypes.ENUM(POLICY.public, POLICY.private),
         allowNull: true,
       },
       createdBy: {
@@ -83,10 +77,6 @@ class DiaryNote extends Model {
     this.belongsTo(models.Image, {
       foreignKey: 'imageId'
     })
-    this.belongsTo(models.User), {
-      as: 'user',
-      foreignKey: 'userId'
-    };
     this.belongsTo(models.Activity, {
       foreignKey: 'activityId'
     })
