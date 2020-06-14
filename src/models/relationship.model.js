@@ -13,7 +13,8 @@ class Relationship extends Model {
         references: {
           model: 'families',
           key: 'id'
-        }
+        },
+        allowNull: true,
       },
       userId1: {
         type: DataTypes.UUID,
@@ -38,14 +39,16 @@ class Relationship extends Model {
         references: {
           model: 'role_types',
           key: 'id'
-        }
+        },
+        allowNull: true,
       },
       roleType2: {
         type: DataTypes.UUID,
         references: {
           model: 'role_types',
           key: 'id'
-        }
+        },
+        allowNull: true,
       },
     }, {
       sequelize,

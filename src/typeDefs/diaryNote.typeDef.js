@@ -1,4 +1,4 @@
-import { POLICY } from '../components/constants';
+import { POLICY, DIARY_FILTER } from '../components/constants';
 
 const typeDef = `
   extend type Query {
@@ -13,9 +13,9 @@ const typeDef = `
     ${POLICY.private}
   }
   enum Filter {
-    ALL
-    BY_ACCOUNT
-    BY_RELATIVE
+    ${DIARY_FILTER.all}
+    ${DIARY_FILTER.byAccount}
+    ${DIARY_FILTER.byRelative}
   }
   type DiaryNote {
     id: String
@@ -28,6 +28,8 @@ const typeDef = `
     policy: Policy
     createdBy: String
     updatedBy: String
+    createdAt: DateTime
+    updatedAt: DateTime
   }
   type DiaryNotesOutput {
     count: Int

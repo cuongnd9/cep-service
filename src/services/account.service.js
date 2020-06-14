@@ -29,6 +29,7 @@ class AccountService {
     return {
       token,
       phone,
+      ...user.toJSON(),
     };
   }
 

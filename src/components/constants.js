@@ -12,3 +12,9 @@ export const DIARY_FILTER = {
   byAccount: 'BY_ACCOUNT',
   byRelative: 'BY_RELATIVE',
 };
+
+export const RELATIONSHIP = {
+  sibling: 'SIBLING',
+  spouse: 'SPOUSE',
+  parentChild: 'PARENT_CHILD',
+};
