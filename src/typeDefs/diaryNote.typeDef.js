@@ -2,12 +2,21 @@ import { POLICY } from '../components/constants';
 
 const typeDef = `
   extend type Query {
-    diaryNotes(offset: Int, limit: Int): [DiaryNote]
+    diaryNotes(filter: Filter!, offset: Int, limit: Int): DiaryNotesOutput
   }
   extend type Mutation {
     createDiaryNote(title: String!, notes: String, policy: Policy!): DiaryNote
   }
 
+  enum Policy {
+    ${POLICY.public}
+    ${POLICY.private}
+  }
+  enum Filter {
+    ALL
+    BY_ACCOUNT
+    BY_RELATIVE
+  }
   type DiaryNote {
     id: String
     title: String
@@ -20,10 +29,9 @@ const typeDef = `
     createdBy: String
     updatedBy: String
   }
-
-  enum Policy {
-    ${POLICY.public}
-    ${POLICY.private}
+  type DiaryNotesOutput {
+    count: Int
+    rows: [DiaryNote]
   }
 `;
 

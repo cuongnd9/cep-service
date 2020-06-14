@@ -1,6 +1,6 @@
 import joi from 'joi';
 import jwt from 'jsonwebtoken';
-import { flow, flatten } from 'lodash';
+import { flow } from 'lodash';
 
 import config from './config';
 import { SchemaValidationError, AuthenticationError, AuthorizationError } from './errors';
@@ -24,7 +24,7 @@ export const validateToken = (...allowed) => (...rest) => {
     }
     if (allowed.indexOf(payload.role) > -1) {
       // eslint-disable-next-line no-param-reassign
-      rest[2].payload = payload;
+      rest[2].user = payload;
       return rest;
     }
     throw new AuthorizationError('Không có quyền truy cập tài nguyên');
