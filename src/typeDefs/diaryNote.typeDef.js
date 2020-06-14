@@ -32,6 +32,10 @@ const typeDef = `
     updatedAt: DateTime
   }
   type DiaryNotesOutput {
+    byAccount: AllAndCount
+    byRelative: AllAndCount
+  }
+  type AllAndCount {
     count: Int
     rows: [DiaryNote]
   }
