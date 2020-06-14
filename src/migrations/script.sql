@@ -92,9 +92,11 @@
   CREATE TABLE public.categories (
     id uuid NOT NULL,
     code varchar(255) NULL,
+    title text NULL,
+    "description" text NULL,
     parent_id uuid NULL,
-    count int4 NULL,
-    order_by int4 NULL,
+    "count" int4 NULL,
+    order_by uuid NULL,
     keyword text NULL,
     created_by uuid NULL,
     updated_by uuid NULL,
