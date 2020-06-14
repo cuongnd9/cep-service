@@ -8,11 +8,8 @@ const typeDef = `
   }
 
   type LoginOutput {
+    id: String
     token: String
-    phone: String
-  }
-
-  type RegisterOutput {
     phone: String
     firstName: String
     lastName: String
@@ -23,6 +20,22 @@ const typeDef = `
     contactAddress: JSON
     permanentAddress: JSON
     nationalId: String
+  }
+
+  type RegisterOutput {
+    id: String
+    phone: String
+    firstName: String
+    lastName: String
+    imageId: String
+    gender: String
+    dob: DateTime
+    email: String
+    contactAddress: JSON
+    permanentAddress: JSON
+    nationalId: String
+    createdAt: DateTime
+    updatedAt: DateTime
   }
 `;
 
