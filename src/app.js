@@ -1,6 +1,7 @@
 import { GraphQLServer } from 'graphql-yoga';
 import { makeExecutableSchema } from 'graphql-tools';
 import signale from 'signale';
+
 import { formatError } from './components/utils';
 import typeDefs from './typeDefs';
 import resolvers from './resolvers';
@@ -11,11 +12,19 @@ const app = () => {
     resolvers,
   });
 
-  const server = new GraphQLServer({ schema });
+  const server = new GraphQLServer({
+    schema,
+    context: (params) => {
+      const { token } = params.request.headers;
+      return {
+        ...params,
+        token,
+      };
+    },
+  });
 
   const options = {
     formatError,
-    context: (req) => ({ ...req }),
     debug: false,
   };
 

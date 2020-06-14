@@ -11,12 +11,12 @@ class AccountService {
     const { phone, password } = data;
     const user = await db.User.findOne({ where: { phone } });
     if (!user) {
-      throw new AuthenticationError('Account does not exists');
+      throw new AuthenticationError('Tài khoản không tồn tại');
     }
     const account = await db.Account.findOne({ where: { userId: user.id } });
     const match = await bcrypt.compare(password, account.password);
     if (!match) {
-      throw new AuthenticationError('Password is incorrect');
+      throw new AuthenticationError('Mật khẩu không chính xác');
     }
     const { id, role } = account;
     const { secretKey, algorithm } = config.jwt;

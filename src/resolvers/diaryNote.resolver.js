@@ -1,12 +1,13 @@
 import joi from 'joi';
 
-import { middleware, validateSchema } from '../components/middlewares';
+import { middleware, validateSchema, validateToken } from '../components/middlewares';
 import DiaryNoteService from '../services/diaryNote.service';
-import { POLICY } from '../components/constants';
+import { POLICY, ROLE } from '../components/constants';
 
 const resolver = {
   Query: {
     diaryNotes: middleware(
+      validateToken(ROLE.admin),
       validateSchema({
         offset: joi.number().default(0),
         limit: joi.number().default(10),
