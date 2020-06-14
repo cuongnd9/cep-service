@@ -55,14 +55,6 @@ class Faq extends Model {
     this.belongsTo(models.Category, {
       foreignKey: 'categoryId'
     })
-    this.belongsTo(models.User), {
-      as: 'createdBy',
-      foreignKey: 'createdBy'
-    };
-    this.belongsTo(models.User), {
-      as: 'updatedBy',
-      foreignKey: 'updatedBy'
-    };
   }
 }
 

@@ -80,14 +80,6 @@ class DiaryNote extends Model {
     this.belongsTo(models.Activity, {
       foreignKey: 'activityId'
     })
-    this.belongsTo(models.User), {
-      as: 'createdBy',
-      foreignKey: 'createdBy'
-    };
-    this.belongsTo(models.User), {
-      as: 'updatedBy',
-      foreignKey: 'updatedBy'
-    };
   }
 }
 

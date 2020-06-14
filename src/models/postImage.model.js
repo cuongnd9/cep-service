@@ -49,14 +49,6 @@ class PostImage extends Model {
     this.belongsTo(models.Image, {
       foreignKey: 'imageId'
     });
-    this.belongsTo(models.User), {
-      as: 'createdBy',
-      foreignKey: 'createdBy'
-    };
-    this.belongsTo(models.User), {
-      as: 'updatedBy',
-      foreignKey: 'updatedBy'
-    };
   }
 }
 

@@ -2,7 +2,7 @@ import joi from 'joi';
 
 import { middleware, validateSchema, validateToken } from '../components/middlewares';
 import DiaryNoteService from '../services/diaryNote.service';
-import { POLICY, ROLE } from '../components/constants';
+import { ROLE } from '../components/constants';
 
 const resolver = {
   Query: {
@@ -12,15 +12,20 @@ const resolver = {
         offset: joi.number().default(0),
         limit: joi.number().default(10),
       }),
-      (_, args) => DiaryNoteService.getDiaryNotes(args),
+      (_, args, { user }) => DiaryNoteService.getDiaryNotes({
+        ...args,
+        userId: user.userId,
+      }),
     ),
   },
   Mutation: {
     createDiaryNote: middleware(
-      validateSchema({
-        policy: joi.string().valid(POLICY.public, POLICY.private),
+      validateToken(ROLE.admin),
+      (_, args, { user }) => DiaryNoteService.createDiaryNote({
+        ...args,
+        createdBy: user.userId,
+        updatedBy: user.userId,
       }),
-      (_, args) => DiaryNoteService.createDiaryNote(args),
     ),
   },
 };

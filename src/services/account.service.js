@@ -22,6 +22,7 @@ class AccountService {
     const { secretKey, algorithm } = config.jwt;
     const payload = {
       id,
+      userId: user.id,
       role,
     };
     const token = jwt.sign(payload, secretKey, { algorithm });

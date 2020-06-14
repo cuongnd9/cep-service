@@ -49,14 +49,6 @@ class Image extends Model {
     this.hasOne(models.DiaryNote, {
       foreignKey: 'imageId'
     });
-    this.belongsTo(models.User), {
-      as: 'createdBy',
-      foreignKey: 'createdBy'
-    };
-    this.belongsTo(models.User), {
-      as: 'updatedBy',
-      foreignKey: 'updatedBy'
-    };
   }
 }
 

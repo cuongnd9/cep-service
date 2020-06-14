@@ -57,14 +57,6 @@ class Category extends Model {
     this.hasOne(models.Category, {
       foreignKey: 'parentId'
     });
-    this.belongsTo(models.User), {
-      as: 'createdBy',
-      foreignKey: 'createdBy'
-    };
-    this.belongsTo(models.User), {
-      as: 'updatedBy',
-      foreignKey: 'updatedBy'
-    };
   }
 }
 
