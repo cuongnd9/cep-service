@@ -269,7 +269,7 @@
     CONSTRAINT diary_notes_created_by_fkey FOREIGN KEY (created_by) REFERENCES users(id),
     CONSTRAINT diary_notes_image_id_fkey FOREIGN KEY (image_id) REFERENCES images(id),
     CONSTRAINT diary_notes_ref_id_fkey FOREIGN KEY (ref_id) REFERENCES diary_notes(id),
-    CONSTRAINT diary_notes_updated_by_fkey FOREIGN KEY (updated_by) REFERENCES users(id),
+    CONSTRAINT diary_notes_updated_by_fkey FOREIGN KEY (updated_by) REFERENCES users(id)
   );
 
 
