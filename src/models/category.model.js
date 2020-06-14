@@ -10,22 +10,34 @@ class Category extends Model {
       },
       code: {
         type: DataTypes.STRING,
+        allowNull: true,
+      },
+      title: {
+        type: DataTypes.STRING,
+      },
+      description: {
+        type: DataTypes.STRING,
+        allowNull: true,
       },
       parentId: {
         type: DataTypes.UUID,
         references: {
           model: 'categories',
           key: 'id'
-        }
+        },
+        allowNull: true,
       },
       count: {
         type: DataTypes.INTEGER,
+        allowNull: true,
       },
       orderBy: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
+        allowNull: true,
       },
       keyword: {
         type: DataTypes.TEXT,
+        allowNull: true,
       },
       createdBy: {
         type: DataTypes.UUID,
