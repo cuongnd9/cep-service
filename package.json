@@ -10,7 +10,7 @@
     "start": "node build/index.js",
     "start:dev": "nodemon --exec babel-node src/index.js",
     "prebuild": "rm -rf build",
-    "build": "babel src --out-dir build",
+    "build": "babel src --out-dir build --copy-files",
     "lint": "eslint .",
     "lint:fix": "eslint --fix ."
   },
