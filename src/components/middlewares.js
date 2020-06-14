@@ -12,8 +12,7 @@ export const middleware = (...parameters) => (obj, args, context, info) => {
 };
 
 export const validateToken = (...allowed) => (...rest) => {
-  const flattenRest = flatten(rest);
-  const context = flattenRest[2];
+  const context = rest[2];
   const { token } = context;
   if (!token) {
     throw new AuthenticationError('Không có token được cung cấp');
@@ -33,9 +32,8 @@ export const validateToken = (...allowed) => (...rest) => {
 };
 
 export const validateSchema = (schema) => (...rest) => {
-  const flattenRest = flatten(rest);
-  const root = flattenRest[0];
-  const args = flattenRest[1];
+  const root = rest[0];
+  const args = rest[1];
   const value = {
     ...root,
     ...args,
