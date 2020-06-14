@@ -1,5 +1,7 @@
 import { Model, DataTypes } from 'sequelize';
 
+import { ROLE } from '../components/constants';
+
 class Account extends Model {
   static init(sequelize) {
     super.init({
@@ -17,9 +19,9 @@ class Account extends Model {
         type: DataTypes.TEXT,
       },
       role: {
-        type: DataTypes.ENUM('admin'),
+        type: DataTypes.ENUM(ROLE.admin),
         allowNull: true,
-        defaultValue: 'admin'
+        defaultValue: ROLE.admin
       },
       userId: {
         type: DataTypes.UUID,
