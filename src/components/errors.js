@@ -2,7 +2,7 @@ import { ApolloError } from 'apollo-server-errors';
 import { snakeCase } from 'lodash';
 
 export class AppError extends ApolloError {
-  constructor(message = 'Internal Service Error') {
+  constructor(message = 'Lỗi hệ thống') {
     super(message);
     this.extensions.code = snakeCase(this.constructor.name).toUpperCase();
   }
