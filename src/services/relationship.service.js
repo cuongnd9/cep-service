@@ -4,6 +4,31 @@ import db from '../models';
 import { ExistsError, NotFoundError } from '../components/errors';
 
 class RelationshipService {
+  static getRelationships(userId) {
+    return db.Relationship.findAll({
+      where: {
+        [Op.or]: [
+          {
+            userId1: userId,
+          },
+          {
+            userId2: userId,
+          },
+        ],
+      },
+      include: [
+        {
+          model: db.User,
+          as: 'user1',
+        },
+        {
+          model: db.User,
+          as: 'user2',
+        },
+      ],
+    });
+  }
+
   static async addRelationship({ phone1, phone2, relationship }) {
     const user1 = await db.User.findOne({ where: { phone: phone1 } });
     const user2 = await db.User.findOne({ where: { phone: phone2 } });

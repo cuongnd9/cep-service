@@ -17,4 +17,5 @@ export const RELATIONSHIP = {
   sibling: 'SIBLING',
   spouse: 'SPOUSE',
   parentChild: 'PARENT_CHILD',
+  friend: 'FRIEND',
 };
