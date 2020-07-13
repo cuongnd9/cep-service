@@ -27,6 +27,12 @@ const resolver = {
         updatedBy: user.userId,
       }),
     ),
+    updateDiaryNote: middleware(
+      validateToken(ROLE.admin),
+      (_, args) => DiaryNoteService.updateDiaryNote({
+        ...args,
+      }),
+    ),
   },
 };
 

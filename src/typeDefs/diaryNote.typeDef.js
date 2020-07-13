@@ -6,6 +6,7 @@ const typeDef = `
   }
   extend type Mutation {
     createDiaryNote(title: String!, notes: String, policy: Policy!): DiaryNote
+    updateDiaryNote(id: String!, title: String, notes: String, policy: Policy): DiaryNote
   }
 
   enum Policy {
