@@ -3,7 +3,7 @@ const config = {
   port: process.env.PORT || 4000,
   pgHost: process.env.PG_HOST || '127.0.0.1',
   pgPort: process.env.PG_PORT || 5432,
-  pgDB: process.env.PG_DB || 'cep-service',
+  pgDB: process.env.PG_DB || 'postgres',
   pgUser: process.env.PG_USER || 'postgres',
   pgPassword: process.env.PG_PASSWORD || 'postgres',
   jwt: {

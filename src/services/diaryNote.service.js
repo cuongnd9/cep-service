@@ -69,6 +69,21 @@ class DiaryNoteService {
   static createDiaryNote(data) {
     return db.DiaryNote.create({ ...data });
   }
+
+  static async updateDiaryNote(data) {
+    const { id, ...otherData } = data;
+    const diaryNote = await db.DiaryNote.findOne(
+      {
+        where: {
+          id,
+        },
+      },
+    );
+    await diaryNote.update({
+      ...otherData,
+    });
+    return diaryNote;
+  }
 }
 
 export default DiaryNoteService;
