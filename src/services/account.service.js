@@ -1,4 +1,4 @@
-import { thinid } from 'thinid';
+import { diana } from 'diana-js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
@@ -42,7 +42,7 @@ class AccountService {
     const newUser = await db.User.create({ ...userData });
     const hashPassword = await bcrypt.hash(password, 10);
     const accountData = {
-      username: thinid(),
+      username: diana(),
       password: hashPassword,
       userId: newUser.id,
     };
